@@ -1,18 +1,18 @@
 /* STYLE.CSS - Portfolio Luigi Differente
-    Focus: Spaziatura Premium, Tipografia Moderna, Look Tech
+    Design: Modern, High-Spacing, Responsive con Foto Profilo
 */
 
 :root {
-    --bg: #0f172a;           /* Sfondo Deep Blue */
-    --card: #1e293b;         /* Colore card */
+    --bg: #0f172a;           /* Blu profondo */
+    --card: #1e293b;         /* Colore dei blocchi */
     --accent: #38bdf8;       /* Celeste Sky */
-    --text: #f1f5f9;         /* Testo principale */
-    --text-dim: #94a3b8;     /* Testo secondario */
-    --border: #334155;       /* Bordi */
-    --section-gap: 160px;    /* Distanza tra sezioni */
+    --text: #f1f5f9;         /* Testo chiaro */
+    --text-dim: #94a3b8;     /* Testo attenuato */
+    --border: #334155;       /* Bordi discreti */
+    --section-gap: 160px;    /* Spazio tra sezioni */
 }
 
-/* Reset e Base */
+/* Reset universale */
 * {
     margin: 0;
     padding: 0;
@@ -29,12 +29,12 @@ body {
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1100px; /* Allargato leggermente per far spazio alla foto */
     margin: 0 auto;
     padding: 0 3rem;
 }
 
-/* Navigation - Floating Glassmorphism */
+/* --- NAVIGATION --- */
 nav {
     display: flex;
     justify-content: space-between;
@@ -49,8 +49,8 @@ nav {
 }
 
 .logo {
-    font-weight: 800;
-    font-size: 1.4rem;
+    font-weight: 900;
+    font-size: 1.5rem;
     color: var(--accent);
     letter-spacing: -1px;
 }
@@ -68,15 +68,26 @@ nav {
     color: var(--accent);
 }
 
-/* Hero Section */
+/* --- HERO SECTION (CON FOTO) --- */
 .hero {
-    padding: 180px 0 100px 0;
+    padding: 160px 0 100px 0;
+}
+
+.hero-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+.hero-text {
+    flex: 1;
 }
 
 h1 {
-    font-size: 4.8rem;
+    font-size: 4.5rem;
     letter-spacing: -4px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     line-height: 1.1;
     font-weight: 900;
 }
@@ -94,6 +105,12 @@ h1 {
     margin-bottom: 40px;
 }
 
+.hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
 .hero-tags span {
     background: rgba(56, 189, 248, 0.1);
     padding: 10px 20px;
@@ -101,20 +118,37 @@ h1 {
     font-size: 0.85rem;
     border: 1px solid var(--border);
     color: var(--accent);
-    margin-right: 12px;
     font-weight: 500;
 }
 
-/* Section Logic & Lines */
+/* Stile Foto Profilo */
+.hero-image {
+    flex-shrink: 0;
+}
+
+.hero-image img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid var(--card);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
+}
+
+.hero-image img:hover {
+    transform: scale(1.05);
+    border-color: var(--accent);
+}
+
+/* --- SEZIONI --- */
 section {
     padding: var(--section-gap) 0;
     border-top: 1px solid var(--border);
-    margin-top: 60px;
 }
 
 section:first-of-type {
     border-top: none;
-    margin-top: 0;
     padding-top: 100px;
 }
 
@@ -123,6 +157,7 @@ h2 {
     font-size: 2.8rem;
     letter-spacing: -2px;
     font-weight: 800;
+    position: relative;
 }
 
 h2::before {
@@ -143,86 +178,80 @@ h2::before {
     max-width: 850px;
 }
 
-.bio-content strong {
-    color: var(--text);
-}
-
 .indire-link {
     display: inline-block;
     margin-top: 15px;
     color: var(--accent);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     border-bottom: 1px dashed var(--accent);
     transition: 0.3s;
 }
 
 .indire-link:hover {
+    color: var(--text);
     border-bottom-style: solid;
-    opacity: 0.8;
 }
 
-/* Percorso Accademico Grid */
-.section-intro {
-    font-size: 1.15rem;
-    color: var(--text-dim);
-    margin-bottom: 60px;
-    max-width: 800px;
-}
-
+/* --- EXAMS GRID --- */
 .exams-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 35px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
     margin-bottom: 40px;
 }
 
 .exam-card {
     background: var(--card);
-    padding: 25px 30px;
-    border-radius: 20px;
+    padding: 30px 40px;
+    border-radius: 24px;
     border: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: 0.3s ease;
 }
 
 .exam-card:hover {
-    transform: translateY(-5px);
     border-color: var(--accent);
+    transform: translateY(-5px);
 }
 
 .exam-card span {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--text-dim);
     font-weight: 500;
 }
 
 .exam-card strong {
     color: var(--accent);
-    font-size: 1.3rem;
-    font-weight: 800;
+    font-size: 1.4rem;
+    font-weight: 900;
 }
 
-/* Project Blocks */
+/* --- PROGETTI --- */
 .project-block {
     background: var(--card);
     padding: 60px;
-    border-radius: 30px;
+    border-radius: 35px;
     border: 1px solid var(--border);
     margin-bottom: 100px;
+    transition: border-color 0.3s ease;
+}
+
+.project-block:hover {
+    border-color: var(--accent);
 }
 
 .project-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
 }
 
 .tag {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 800;
     color: var(--accent);
     text-transform: uppercase;
@@ -236,8 +265,8 @@ h2::before {
 }
 
 h3 {
-    font-size: 2.4rem;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
     letter-spacing: -1px;
 }
 
@@ -245,21 +274,14 @@ h3 {
     margin: 40px 0;
     padding: 35px;
     background: rgba(15, 23, 42, 0.5);
-    border-radius: 20px;
-}
-
-.project-details ul {
-    list-style: none;
+    border-radius: 25px;
 }
 
 .project-details li {
     font-size: 1.1rem;
     color: var(--text-dim);
     margin-bottom: 15px;
-}
-
-.project-details li strong {
-    color: var(--text);
+    list-style: none;
 }
 
 .split {
@@ -271,8 +293,8 @@ h3 {
 .warning {
     color: #f87171;
     font-size: 0.9rem;
-    font-weight: 600;
-    margin-top: 25px;
+    font-weight: 700;
+    margin-top: 30px;
 }
 
 .btn-git {
@@ -280,7 +302,7 @@ h3 {
     margin-top: 40px;
     color: var(--accent);
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1.1rem;
     transition: opacity 0.3s;
     border-bottom: 2px solid transparent;
@@ -290,7 +312,7 @@ h3 {
     border-bottom-color: var(--accent);
 }
 
-/* Footer & Contact */
+/* --- FOOTER --- */
 footer {
     padding: 140px 0;
     text-align: center;
@@ -317,15 +339,34 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Responsive per schermi piccoli */
-@media (max-width: 768px) {
-    h1 { font-size: 3.5rem; letter-spacing: -2px; }
-    .container { padding: 0 2rem; }
-    .hero { padding: 120px 0 60px 0; }
-    section { padding: 100px 0; }
-    .exams-grid { gap: 20px; }
-    .project-block { padding: 35px; }
-    .split { grid-template-columns: 1fr; }
-    nav { padding: 1.5rem 5%; }
-    .nav-links a { margin-left: 1.2rem; font-size: 0.8rem; }
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 900px) {
+    .hero-layout {
+        flex-direction: column-reverse; /* Foto sopra il testo su mobile */
+        text-align: center;
+        gap: 40px;
+    }
+
+    h1 { font-size: 3.5rem; }
+
+    .hero-tags {
+        justify-content: center;
+    }
+
+    .hero-image img {
+        width: 220px;
+        height: 220px;
+    }
+
+    .exams-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .split {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-block {
+        padding: 40px 30px;
+    }
 }
