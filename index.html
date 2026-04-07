@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luigi Differente | Informatica Federico II</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">LD</div>
+        <div class="nav-links">
+            <a href="#about">Bio</a>
+            <a href="#exams">Percorso</a>
+            <a href="#projects">Progetti</a>
+            <a href="#contact">Contatti</a>
+        </div>
+    </nav>
+
+    <header class="hero container">
+        <h1>Luigi Differente</h1>
+        <p class="subtitle">Studente di Informatica</p>
+        <p class="university">Università degli Studi di Napoli Federico II</p>
+        <div class="hero-tags">
+            <span>C++</span> <span>Java</span> <span>Spring Boot</span> <span>Azure</span>
+        </div>
+    </header>
+
+    <section id="about" class="container">
+        <h2>Presentazione</h2>
+        <div class="bio-content">
+            <p>Sono Luigi Differente, nato a Napoli il 21/03/2003.</p>
+            <p>
+                Attualmente frequento il corso di studi in <strong>Informatica presso l'Università Federico II</strong>. 
+                Il mio percorso accademico si focalizza sulla costruzione di solide basi algoritmiche e ingegneristiche seguendo il piano di studi ufficiale dell'ateneo.
+            </p>
+            <p>
+                Ho conseguito il diploma di <strong>Perito Tecnico Informatico</strong> presso l'<strong>ITI Augusto Righi</strong> di Napoli nell'A.S. 2021/2022 con la votazione di <strong>100/100 e lode</strong>. 
+                Questo risultato mi ha permesso l'inserimento nell'Albo Nazionale delle Eccellenze gestito dall'<strong>INDIRE</strong>.
+                <br>
+                <a href="https://www.indire.it/eccellenze/" target="_blank" class="indire-link">Verifica Albo Eccellenze (A.S. 2021/22) →</a>
+            </p>
+        </div>
+    </section>
+
+    <section id="exams" class="container">
+        <h2>Percorso Accademico</h2>
+        <p class="section-intro">
+            Lo studio presso la Federico II mi ha permesso di approfondire diverse aree delle scienze informatiche. Di seguito i risultati più significativi che riflettono le mie competenze core:
+        </p>
+
+                <div class="exams-grid">
+            <div class="exam-card"><span>Linguaggi di Programmazione: </span><strong>30</strong></div>
+            <div class="exam-card"><span>Laboratorio di Programmazione: </span><strong>30 e lode</strong></div>
+            <div class="exam-card"><span>Elementi di Inf. Teorica: </span><strong>30</strong></div>
+            <div class="exam-card"><span>Basi di Dati: </span><strong>29</strong></div>
+            <div class="exam-card"><span>Sistemi Operativi I: </span><strong>28</strong></div>
+            <div class="exam-card"><span>Object Orientation: </span><strong>28</strong></div>
+            <div class="exam-card"><span>Reti di Calcolatori: </span><strong>27</strong></div>
+            <div class="exam-card"><span>Fisica Generale: </span><strong>30</strong></div>
+        </div>
+
+    </section>
+
+    <section id="projects" class="container">
+        <h2>Progetti Selezionati</h2>
+        
+        <div class="project-block">
+            <div class="project-header">
+                <span class="tag">Software Engineering / SOA</span>
+                <span class="stats" id="stats-ingsw">Syncing GitHub...</span>
+            </div>
+            <h3>Project BugBoard 26</h3>
+            <p>Sistema enterprise per il bug tracking basato su Architettura Orientata ai Servizi (SOA).</p>
+            <div class="project-details">
+                <ul>
+                    <li><strong>Backend:</strong> Spring Boot, JWT Auth, Microservizi per Issue/Commenti.</li>
+                    <li><strong>Frontend:</strong> Interfaccia desktop reattiva in JavaFX.</li>
+                    <li><strong>Cloud:</strong> Infrastruttura ospitata su Microsoft Azure e pronta per Docker.</li>
+                </ul>
+            </div>
+            <a href="[LINK_GITHUB_INGSW]" class="btn-git">Visualizza Repository →</a>
+        </div>
+
+        <div class="project-block">
+            <div class="project-header">
+                <span class="tag">C++ / Algorithms</span>
+                <span class="stats" id="stats-lasd">Syncing GitHub...</span>
+            </div>
+            <h3>Laboratorio Algoritmi e Strutture Dati</h3>
+            <p>Implementazione di librerie generiche modulari (.hpp/.cpp) per la gestione di strutture dati dinamiche.</p>
+            <div class="project-details">
+                <div class="split">
+                    <div><strong>Ex 1:</strong> Vector, List, Ordered Set (Map/Traverse/Fold).</div>
+                    <div><strong>Ex 2:</strong> Heap binario implicito e Priority Queue.</div>
+                </div>
+                <p class="warning">⚠️ Progetto didattico: Copia non autorizzata (Codice Etico).</p>
+            </div>
+            <a href="[LINK_GITHUB_LASD]" class="btn-git">Visualizza Repository →</a>
+        </div>
+
+        <div class="project-block">
+            <div class="project-header">
+                <span class="tag">Java / GUI</span>
+                <span class="stats" id="stats-oo">Syncing GitHub...</span>
+            </div>
+            <h3>UninaDelivery Management</h3>
+            <p>Sistema gestionale per la logistica e spedizione merci sviluppato per l'esame di Object Orientation.</p>
+            <div class="project-details">
+                <ul>
+                    <li><strong>Funzioni:</strong> Gestione ordini, corrieri e disponibilità prodotti con filtraggio temporale.</li>
+                    <li><strong>GUI:</strong> Sviluppato in JavaFX/Swing con sistema di Login e reportistica statistica.</li>
+                </ul>
+            </div>
+            <a href="[LINK_GITHUB_OO]" class="btn-git">Visualizza Repository →</a>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/tuo-profilo" target="_blank">LinkedIn</a>
+                <a href="mailto:differenteluigi2003@gmail.com">Email</a>
+                <a href="https://github.com/Luigi2103" target="_blank">GitHub</a>
+            </div>
+            <p class="copyright">© 2026 Luigi Differente • Napoli</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
