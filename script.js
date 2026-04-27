@@ -1,37 +1,9 @@
 "use strict";
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-// Funzione asincrona per il tracking
-async function startTracking() {
-    try {
-        
-        const { firebaseConfig } = await import('./config.js');
-        
-       
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
 
-       
-        if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
-            await addDoc(collection(db, "visualizzazioni"), {
-                orario: serverTimestamp(),
-                userAgent: navigator.userAgent,
-                piattaforma: navigator.platform,
-                lingua: navigator.language
-            });
-            console.log("Tracking inviato con successo.");
-        }
-    } catch (err) {
-        console.warn("Tracking saltato: file di configurazione non trovato.");
-    }
-}
 
 const init = () => {
-    // Avvia il tracking in background
-    startTracking();
-
     const observerOptions = { threshold: 0.1 };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -49,35 +21,68 @@ const init = () => {
         observer.observe(section);
     });
 
-    fetchGitHubStats('Project-Bugboard26', 'stats-ingsw');
-    fetchGitHubStats('LASD', 'stats-lasd');
-    fetchGitHubStats('ProgettoGagliottiDifferente', 'stats-oo');
+    fetchGitHubStats('Luigi2103', 'Project-Bugboard26', 'stats-ingsw');
+    fetchGitHubStats('Luigi2103', 'LASD', 'stats-lasd');
+    fetchGitHubStats('GDom3', 'ProgettoGagliottiDifferente', 'stats-oo');
+    fetchGitHubStats('Luigi2103', 'Gemini-Game', 'stats-Gemini_Game');
+
 };
 
-async function fetchGitHubStats(repoName, elementId) {
+function updateStatsUI(el, data) {
+    if (data.pushed_at) {
+        const date = new Date(data.pushed_at).toLocaleDateString('it-IT');
+        const stars = data.stargazers_count || 0;
+        el.innerText = `Ultimo update: ${date} • ${stars} ⭐`;
+    }
+}
+
+async function fetchGitHubStats(owner, repoName, elementId) {
     const el = document.getElementById(elementId);
     if (!el) return;
 
+    const cacheKey = `github_stats_${owner}_${repoName}`;
+    const cacheTimeKey = `github_stats_time_${owner}_${repoName}`;
+    const cachedData = localStorage.getItem(cacheKey);
+    const cachedTime = localStorage.getItem(cacheTimeKey);
+
+    if (cachedData && cachedTime && (Date.now() - cachedTime < 3600000)) {
+        try {
+            updateStatsUI(el, JSON.parse(cachedData));
+            return;
+        } catch (e) {
+            console.warn("Errore parsing cache", e);
+        }
+    }
+
     try {
-        const response = await fetch(`https://api.github.com/repos/Luigi2103/${repoName}`);
-        
+        const response = await fetch(`https://api.github.com/repos/${owner}/${repoName}`);
+
         if (response.status === 403) {
-            el.innerText = "Repository Pubblica";
+            if (cachedData) {
+                updateStatsUI(el, JSON.parse(cachedData));
+            } else {
+                el.innerText = "Repository su GitHub";
+            }
             return;
         }
 
         if (!response.ok) throw new Error(`Errore HTTP: ${response.status}`);
 
         const data = await response.json();
-        
-        if (data.pushed_at) {
-            const date = new Date(data.pushed_at).toLocaleDateString('it-IT');
-            const stars = data.stargazers_count || 0;
-            el.innerText = `Ultimo update: ${date} • ${stars} ⭐`;
-        }
+
+        localStorage.setItem(cacheKey, JSON.stringify(data));
+        localStorage.setItem(cacheTimeKey, Date.now().toString());
+
+        updateStatsUI(el, data);
 
     } catch (e) {
-        el.innerText = "Repository su GitHub";
+        if (cachedData) {
+            try {
+                updateStatsUI(el, JSON.parse(cachedData));
+            } catch (err) { }
+        } else {
+            el.innerText = "Repository su GitHub";
+        }
     }
 }
 
